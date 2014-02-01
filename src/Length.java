@@ -1,9 +1,9 @@
-public class Length {
+public class Length extends Measurement{
     private double length;
-    private Unit unit;
+    private Unit.Length unit;
 
-    public Length(double length, Unit unit) throws IllegalArgumentException {
-        if (length < 0) throw new IllegalArgumentException("Number is negative");
+    public Length(double length, Unit.Length unit) throws IllegalArgumentException {
+        if (length < 0) throw new IllegalArgumentException("Length is negative");
         this.length = length;
         this.unit = unit;
     }
@@ -12,16 +12,11 @@ public class Length {
         return this.length;
     }
 
-    public Unit getUnit() {
+    public Unit.Length getUnit() {
         return this.unit;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return (null != o && this.getClass() == o.getClass());
-    }
-
-    public Length convertTo(Unit other) {
-        return new Length((this.getUnit().getUnitValue() / other.getUnitValue() * this.length), other);
+    public Length convertTo(Unit.Length other) {
+        return new Length((Math.round(this.getUnit().getUnitValue() / other.getUnitValue() * this.length)), other);
     }
 }

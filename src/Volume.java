@@ -1,19 +1,22 @@
-public class Volume extends Lib{
+public class Volume extends Measurement{
     private double volume;
-    private Unit unit;
+    private Unit.Volume unit;
 
-    public Volume(double length, Unit unit) throws IllegalArgumentException {
-        if (length < 0) throw new IllegalArgumentException("Number is negative");
-        this.volume = length;
+    public Volume(double volume, Unit.Volume unit) throws IllegalArgumentException {
+        if (volume < 0) throw new IllegalArgumentException();
+        this.volume = volume;
         this.unit = unit;
     }
 
-    public double getLength() {
+    public double getVolume() {
         return this.volume;
     }
 
-    public Unit getUnit() {
+    public Unit.Volume getUnit() {
         return this.unit;
     }
 
+    public Volume convertTo(Unit.Volume second) {
+        return new Volume((Math.round(this.getUnit().getUnitValue() / second.getUnitValue() * this.volume)), second);
+    }
 }

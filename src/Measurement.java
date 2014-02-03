@@ -19,6 +19,13 @@ public class Measurement {
         double value =(this.getUnit().getUnitValue() / other.getUnitValue()) * this.quantity;
         return new Measurement(value, other);
     }
+
+    public Measurement addTo(Measurement measurement) {
+        if(this.convertTo(measurement.getUnit()).getQuantity() > measurement.getQuantity())
+            return new Measurement(this.getQuantity() + measurement.convertTo(this.getUnit()).getQuantity(), this.getUnit());
+        return new Measurement(this.convertTo(measurement.getUnit()).getQuantity() + measurement.getQuantity(),measurement.getUnit());
+    }
+
     @Override
     public boolean equals(Object o)
     {

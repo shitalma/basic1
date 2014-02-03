@@ -47,7 +47,7 @@ public class VolumeTest {
     public void shouldConvertLiterToGallons() {
         Volume volume = new Volume(1,VolumeUnit.LITER);
         Volume expected = new Volume(0.264172176857989,VolumeUnit.GALLONS);
-        assertEquals(volume, volume.convertTo(VolumeUnit.GALLONS));
+        assertEquals(expected, volume.convertTo(VolumeUnit.GALLONS));
     }
 
 // ---------------------------- Test cases for Kiloliter conversion -----------------------------------------
@@ -93,5 +93,23 @@ public class VolumeTest {
         Volume volume = new Volume(1,VolumeUnit.GALLONS);
         Volume expected = new Volume(0.00378541d,VolumeUnit.KILOLITER);
         assertEquals(expected, volume.convertTo(VolumeUnit.KILOLITER));
+    }
+
+//  ------------------------ Test cases for addition of two units of volume -------------------------------
+    @Test
+    public void testForAdditionOfTwoLiters() {
+        Volume liter1 = new Volume(1,VolumeUnit.LITER);
+        Volume liter2 = new Volume(1,VolumeUnit.LITER);
+        Volume expected = new Volume(2,VolumeUnit.LITER);
+
+        assertEquals(expected, liter1.addTo(liter2));
+    }
+    @Test
+    public void testForAdditionOfLiterWithMilliliter() {
+        Volume liter = new Volume(1,VolumeUnit.LITER);
+        Volume milliliter = new Volume(3000d,VolumeUnit.MILLILITER);
+        Volume expected = new Volume(4000d,VolumeUnit.MILLILITER);
+
+        assertEquals(expected, liter.addTo(milliliter));
     }
 }

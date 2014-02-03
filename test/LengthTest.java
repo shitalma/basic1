@@ -187,8 +187,6 @@ public class LengthTest {
     }
 
 //  ------------------------ Test cases for addition of two units of length -------------------------------
-
-
     @Test
     public void testForAdditionOfTwoMeters() {
         Length meter1 = new Length(1,LengthUnit.METER);
@@ -215,10 +213,18 @@ public class LengthTest {
     }
 
     @Test
-    public void testForAdditionOfMillimeterToMeter() {
-        Length millimeter = new Length(1,LengthUnit.METER);
-        Length meter = new Length(2000d,LengthUnit.MILLIMETER);
+    public void testForAdditionOfMeterToMillimeter() {
+        Length millimeter = new Length(2000d,LengthUnit.MILLIMETER);
+        Length meter = new Length(1d,LengthUnit.METER);
         Length expected = new Length(3000d,LengthUnit.MILLIMETER);
-        assertEquals(expected, millimeter.addTo(meter));
+        assertEquals(expected, meter.addTo(millimeter));
+    }
+
+    @Test
+    public void testForAdditionOfYardsToMiles() {
+        Length yards = new Length(2.18723d,LengthUnit.YARDS);
+        Length meter = new Length(1d,LengthUnit.METER);
+        Length expected = new Length(3.280843298337708d,LengthUnit.YARDS);
+        assertEquals(expected, meter.addTo(yards));
     }
 }
